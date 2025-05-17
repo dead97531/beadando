@@ -5,7 +5,6 @@ import com.dead97531.beadando.service.TicketService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -17,34 +16,21 @@ public class TicketController {
         this.service = service;
     }
 
-    @GetMapping
-    public List<Ticket> all() {
-        return service.findAll();
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Ticket> get(@PathVariable Long id) {
-        return service.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    @GetMapping("/event/{eventId}")
+    public List<Ticket> getTicketsByEvent(@PathVariable Long eventId) {
+        return service.findByEventId(eventId);
     }
 
     @PostMapping
-    public ResponseEntity<Ticket> create(@RequestBody Ticket ticket) {
+    public ResponseEntity<Ticket> createTicket(@RequestBody Ticket ticket) {
         Ticket savedTicket = service.create(ticket);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedTicket);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Ticket> update(@PathVariable Long id, @RequestBody Ticket ticket) {
-        return service.update(id, ticket)
+    @PutMapping("/{id}/sell")
+    public ResponseEntity<Ticket> sellTicket(@PathVariable Long id) {
+        return service.sellTicket(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        service.delete(id);
-        return ResponseEntity.noContent().build();
     }
 }

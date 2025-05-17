@@ -9,3 +9,5 @@ public class BeadandoApplication {
         SpringApplication.run(BeadandoApplication.class, args);
     }
 }
+
+

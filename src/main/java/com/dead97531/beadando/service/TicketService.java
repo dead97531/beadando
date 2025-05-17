@@ -12,6 +12,10 @@ public class TicketService {
     @Autowired
     private TicketRepository ticketRepository;
 
+    public List<Ticket> findByEventId(Long eventId) {
+        return ticketRepository.findByEventId(eventId);
+    }
+
     public List<Ticket> findAll() {
         return ticketRepository.findAll();
     }
@@ -24,16 +28,10 @@ public class TicketService {
         return ticketRepository.save(ticket);
     }
 
-    public Optional<Ticket> update(Long id, Ticket updated) {
-        return ticketRepository.findById(id).map(existing -> {
-            existing.setPrice(updated.getPrice());
-            existing.setSeatNumber(updated.getSeatNumber());
-            existing.setSold(updated.isSold());
-            return ticketRepository.save(existing);
+    public Optional<Ticket> sellTicket(Long id) {
+        return ticketRepository.findById(id).map(ticket -> {
+            ticket.setSold(true);
+            return ticketRepository.save(ticket);
         });
-    }
-
-    public void delete(Long id) {
-        ticketRepository.deleteById(id);
     }
 }
