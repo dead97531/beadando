@@ -6,7 +6,7 @@ public class Task {
     private Long id;
     private String description;
     private LocalDate dueDate;
-    private Long userId; // kapcsolat a Userrel
+    private Long userId;
 
     public Task() {}
 
