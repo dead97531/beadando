@@ -12,12 +12,12 @@ public class TicketService {
     @Autowired
     private TicketRepository ticketRepository;
 
-    public List<Ticket> findByEventId(Long eventId) {
-        return ticketRepository.findByEventId(eventId);
-    }
-
     public List<Ticket> findAll() {
         return ticketRepository.findAll();
+    }
+
+    public List<Ticket> findByEventId(Long eventId) {
+        return ticketRepository.findByEventId(eventId);
     }
 
     public Optional<Ticket> findById(Long id) {

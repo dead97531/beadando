@@ -1,5 +1,6 @@
 package com.dead97531.beadando.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class Event {
     private int capacity;
 
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Ticket> tickets = new ArrayList<>();
 
     public Long getId() { return id; }

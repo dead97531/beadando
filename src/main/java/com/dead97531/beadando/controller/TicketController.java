@@ -15,10 +15,14 @@ public class TicketController {
     public TicketController(TicketService service) {
         this.service = service;
     }
-
     @GetMapping("/event/{eventId}")
     public List<Ticket> getTicketsByEvent(@PathVariable Long eventId) {
         return service.findByEventId(eventId);
+    }
+
+    @GetMapping
+    public List<Ticket> getAllTickets() {
+        return service.findAll();
     }
 
     @PostMapping

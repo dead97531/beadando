@@ -9,7 +9,7 @@ public class Ticket {
     private Long id;
     private double price;
     private String seatNumber;
-    private boolean sold;
+    private boolean sold = false;
 
     @ManyToOne
     @JoinColumn(name = "event_id")
