@@ -22,8 +22,10 @@ public class TicketController {
     public TicketController(TicketService service) {
         this.service = service;
     }
+
     @GetMapping("/event/{eventId}")
-    public List<Ticket> getTicketsByEvent(@PathVariable Long eventId) {
+    public List<Ticket> getTicketsByEvent(@PathVariable("eventId")
+                                              Long eventId) {
         return service.findByEventId(eventId);
     }
 
@@ -39,7 +41,7 @@ public class TicketController {
     }
 
     @PutMapping("/{id}/sell")
-    public ResponseEntity<Ticket> sellTicket(@PathVariable Long id) {
+    public ResponseEntity<Ticket> sellTicket(@PathVariable("id") Long id) {
         return service.sellTicket(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
