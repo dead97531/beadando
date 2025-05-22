@@ -1,9 +1,9 @@
 package com.dead97531.beadando;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.*;
 
-@SpringBootTest(properties = "spring.profiles.active=local")
+@ActiveProfiles("test")
 public class BeadandoApplicationTest {
 
     @Test
