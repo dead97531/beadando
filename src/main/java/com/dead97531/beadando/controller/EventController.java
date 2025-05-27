@@ -56,4 +56,10 @@ public class EventController {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
+    @DeleteMapping
+    public ResponseEntity<Void> deleteAllEvents() {
+        service.deleteAll();
+        return ResponseEntity.noContent().build();
+    }
+
 }

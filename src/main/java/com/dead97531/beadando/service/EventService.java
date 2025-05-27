@@ -37,4 +37,8 @@ public class EventService {
     public void delete(Long id) {
         eventRepository.deleteById(id);
     }
+    public void deleteAll() {
+        eventRepository.deleteAll();
+    }
+
 }
